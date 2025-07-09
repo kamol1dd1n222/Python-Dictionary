@@ -1,9 +1,12 @@
 def group_students(students: list[dict[str, str]]) -> dict[str, list[str]]:
     result =  {}
-    for student in students:
-        grade = student.get("grade")
-        name = student.get("name")
-        result.setdefault(grade,[])
+    for student in range(len(students)):
+        names = []
+        for i in range(student,len(students)):
+            if students[student].get("grade") == students[i].get('grade'):
+                names.append(students[i].get("name"))
+        
+        result.setdefault(students[student].get('grade'),names)
     return result
 
 
@@ -19,3 +22,4 @@ students: list[dict[str, str]] = [
     {"name": "Komil", "grade": "A"}
 ]
 print(group_students(students))
+
